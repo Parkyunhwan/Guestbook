@@ -12,6 +12,8 @@
         <form action="/guestbook/modify" method="post">
 
             <input type="hidden" name="page" th:value="${requestDTO.page}">
+            <input type="hidden" name="type" th:value="${requestDTO.type}">
+            <input type="hidden" name="keyword" th:value="${requestDTO.keyword}">
         <div class="form-group">
             <label>Gno</label>
             <!-- 네임 값 dto 속성과 맞춰줄것.               readonly 유지 수정불가. -->
@@ -74,9 +76,17 @@
             });
 
             $(".listBtn").click(function () {
-                var pageInfo = $("input[name='page']"); // hidden 값 가져와서 사용
+                //var pageInfo = $("input[name='page']"); // hidden 값 가져와서 사용
+
+                // 공통으로 주는 GuestbookDTO에 추가로 넘겨주는 정보들이다..!!
+                var page = $("input[name='page']");
+                var type = $("input[name='type']");
+                var keyword = $("input[name='keyword']");
                 actionForm.empty();
-                actionForm.append(pageInfo);
+                actionForm.append(page);
+                actionForm.append(type);
+                actionForm.append(keyword);
+
                 actionForm
                     .attr("action", "guestbook/list")
                     .attr("mothod", "get");
