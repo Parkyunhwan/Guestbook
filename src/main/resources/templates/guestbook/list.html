@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
 <th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
     <th:block th:fragment="content">
         <h1 class="mt-4">GuestBook List Page
@@ -78,13 +81,14 @@
             </div>
         </div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" th:inline="javascript">
+        <script th:inline="javascript">
 
             let msg = [[${msg}]];
 
             console.log(msg);
 
             if(msg){
+                jQuery.noConflict();
                 $(".modal").modal();
             }
         </script>
